@@ -44,7 +44,8 @@ public class HouseParser : MonoBehaviour
                         string state = toks[7];
                         string address = toks[8];
                         int yearBuilt = Int32.Parse(toks[9]);
-                        Image image = Resources.Load<Image>(Path.Combine(pathToImages, toks[10]));
+                        Debug.Log(Path.Combine(pathToImages, toks[10].Replace(".png", "")));
+                        Texture2D image = Resources.Load<Texture2D>(Path.Combine(pathToImages, toks[10].Replace(".png", "")));
 
                         HouseData newData = new HouseData(price, bedrooms, bathrooms, squareFeet, propertyTax,
                                                           taxAssessment, city, state, address, yearBuilt, image);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
 public struct HouseData
 {
     public int price;
@@ -15,10 +16,10 @@ public struct HouseData
     public string state;
     public string address;
     public int yearBuilt;
-    public Image image;
+    public Texture2D image;
 
     public HouseData(int price, int bedrooms, int bathrooms, int squareFeet, int propertyTax,
-                     int taxAssessment, string city, string state, string address, int yearBuilt, Image image)
+                     int taxAssessment, string city, string state, string address, int yearBuilt, Texture2D image)
     {
         this.price = price;
         this.bedrooms = bedrooms;

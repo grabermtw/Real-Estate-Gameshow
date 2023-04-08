@@ -7,7 +7,7 @@ Price,Num Bedrooms,Num Bathrooms,Square Footage,Most Recent Property Taxes,Most 
 349900,3,2,2382,2032,130300,Fargo,ND,1262 7th St N,1927,fargohouse.png
 429500,3,3,2964,1836,222200,Seymour,IN,1411 Stadium Dr,1979,seymour.png
 1695000,7,8,5317,1845,44850,Frankford,DE,34577 Peppers Corner Rd,2001,frankfordHouse.png
-539000,3,2,1309,"3,668",349700,Peabody,MA,28 Oak Ave,1950,28oakAve.png
+539000,3,2,1309,3668,349700,Peabody,MA,28 Oak Ave,1950,28oakAve.png
 280000,3,4,1793,2312,223200,Baltimore,MD,7400 Waymouth Way,1949,waymouthWay.png
 350000,4,3,2504,5748,278765,Pasadena,TX,6427 Avenel Dr,1992,pasadenaTX.png
 2350000,5,4,4906,6468,69625,Boulder,CO,7083 Indian Peaks Trail,1969,boulderCO.png
