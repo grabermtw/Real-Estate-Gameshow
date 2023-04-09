@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class GameshowManager : MonoBehaviour
 {
-    public DialogueSystem dialogueSystem;
+    private DialogueSystem dialogueSystem;
+
+    void Awake()
+    {
+        dialogueSystem = GetComponent<DialogueSystem>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +26,11 @@ public class GameshowManager : MonoBehaviour
     private void Opening()
     {
         List<Dialogue> testDialogue = new List<Dialogue>();
-        testDialogue.Add(new Dialogue("Bestudo", "Welcome to the show!", dialogueSystem.vcameras[2], AnimCategory.CorrectAnswer));
-        testDialogue.Add(new Dialogue("Bestudo", "So you want to be a realtor?", dialogueSystem.vcameras[1], AnimCategory.CorrectAnswer));
-        testDialogue.Add(new Dialogue("Bestudo", "Well, you've got a lot of learning to do!", dialogueSystem.vcameras[1], AnimCategory.WrongAnswer));
-        testDialogue.Add(new Dialogue("Bestudo", "So whattdya say? Wanna show your real estate smarts?", dialogueSystem.vcameras[1], AnimCategory.CorrectAnswer));
-        testDialogue.Add(new Dialogue("Bestudo", "Let's play some games!", dialogueSystem.vcameras[1], AnimCategory.CorrectAnswer));
+        testDialogue.Add(new Dialogue("Bestudo", "Welcome to the show!", dialogueSystem.wholeStageCam, AnimCategory.CorrectAnswer));
+        testDialogue.Add(new Dialogue("Bestudo", "So you want to be a realtor?", dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
+        testDialogue.Add(new Dialogue("Bestudo", "Well, you've got a lot of learning to do!", dialogueSystem.bestudoCam, AnimCategory.WrongAnswer));
+        testDialogue.Add(new Dialogue("Bestudo", "So whattdya say? Wanna show your real estate smarts?", dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
+        testDialogue.Add(new Dialogue("Bestudo", "Let's play some games!", dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
         dialogueSystem.PlayDialogue(testDialogue, true);
     }
 }

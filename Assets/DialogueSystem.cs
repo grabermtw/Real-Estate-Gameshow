@@ -38,12 +38,9 @@ public class DialogueSystem : MonoBehaviour
     public TextMeshProUGUI nameField;
     public TextMeshProUGUI messageField;
     public TextMeshProUGUI clickMessage;
-    public CinemachineVirtualCamera[] vcameras;
-
-    void Awake()
-    {
-        vcameras = FindObjectsOfType<CinemachineVirtualCamera>();
-    }
+    public CinemachineVirtualCamera wholeStageCam;
+    public CinemachineVirtualCamera bestudoCam;
+    public CinemachineVirtualCamera gameplayCam;
 
     // Start is called before the first frame update
     void Start()
@@ -107,17 +104,17 @@ public class DialogueSystem : MonoBehaviour
         dialoguePanel.SetActive(false);
         if (gestureOnCompletion) {
             bestudoAnim.SetTrigger("Gesture");
-            CameraChanger(vcameras[0]);
+            CameraChanger(gameplayCam);
         }
     }
 
     private void CameraChanger(CinemachineVirtualCamera cam)
     {
         // Handle cameras
-        foreach (CinemachineVirtualCamera vcam in vcameras)
-        {
-            vcam.Priority = 10;
-        }
+        wholeStageCam.Priority = 10;
+        bestudoCam.Priority = 10;
+        gameplayCam.Priority = 10;
+        
         cam.Priority = 11;
     }
 }

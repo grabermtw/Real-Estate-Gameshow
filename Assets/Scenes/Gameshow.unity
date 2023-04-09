@@ -318,7 +318,9 @@ MonoBehaviour:
   nameField: {fileID: 1308885254}
   messageField: {fileID: 766318341}
   clickMessage: {fileID: 1384608708}
-  vcameras: []
+  wholeStageCam: {fileID: 1245161500}
+  bestudoCam: {fileID: 50300001}
+  gameplayCam: {fileID: 1673977991}
 --- !u!1 &193101681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,8 +1153,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058298976}
-  m_LocalRotation: {x: 0.009498588, y: 0.9899796, z: -0.11445699, w: 0.082156695}
-  m_LocalPosition: {x: -1.1132983, y: 2.9237008, z: 5.4}
+  m_LocalRotation: {x: -0.0002014154, y: 0.9986761, z: 0.051289797, w: 0.003921808}
+  m_LocalPosition: {x: -0.8, y: 2.44, z: -0.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
