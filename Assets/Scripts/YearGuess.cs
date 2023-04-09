@@ -11,7 +11,7 @@ public class YearGuess : BaseGame
     string[] yearGuessInstructions = new string[] {
         "Are you good with history? Because it's time to play \"Guess that Decade!\"",
         "It's very simple: guess the decade that the house was built based on the information given!",
-        "You can win up to $100,000! That's a lot of money!",
+        "You can win up to $25,000! That's a lot of money!",
         "But be warned: if you guess incorrectly, you won't even earn a single penny!"
     };
     AnimCategory[] yearGuessAnims = new AnimCategory[] { AnimCategory.CorrectAnswer, AnimCategory.CorrectAnswer, AnimCategory.CorrectAnswer, AnimCategory.WrongAnswer };
@@ -57,14 +57,17 @@ public class YearGuess : BaseGame
         {
             displayText = String.Format("Correct! You win {0}", maxPrize.ToString("C0"));
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
+            GameshowManager.instance.AddMoney(maxPrize);
+            AudioManager.instance.PlayHappySound();
         }
         else
         {
             displayText = String.Format("Sorry, this house was built in the {0}s. Better luck next time!", correctDecade);
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.WrongAnswer));
+            AudioManager.instance.PlaySadSound();
         }
         base.dialogueSystem.PlayDialogue(dialogueList, false, base.gameshowManager.StartNextGame, false);
         //Popup.instance.StartPopup(displayText);
-        GameshowManager.instance.AddMoney(maxPrize);
+        
     }
 }

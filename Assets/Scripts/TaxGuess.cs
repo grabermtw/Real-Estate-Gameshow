@@ -10,7 +10,7 @@ public class TaxGuess : BaseGame
     public TMP_InputField guessInput;
     string[] taxGuessInstructions = new string[] {
         "The Tax Guessing game is super easy! Guess the most recent amount of yearly property tax of the house!",
-        "You can win up to $100,000! The closer you are to the actual value, the more money'll get!"
+        "You can win up to $50,000! The closer you are to the actual value, the more money'll get!"
     };
     AnimCategory[] taxGuessAnims = new AnimCategory[] { AnimCategory.CorrectAnswer, AnimCategory.CorrectAnswer };
 

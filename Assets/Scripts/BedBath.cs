@@ -67,16 +67,20 @@ public class BedBath : BaseGame
         {
             displayText = String.Format("0 beds and 0 baths?\nAre you joking?");
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.WrongAnswer));
+            AudioManager.instance.PlaySadSound();
         }
         if (bedCount == currentData.bedrooms && bathCount == currentData.bathrooms)
         {
             displayText = String.Format("Correct number of bedrooms and bathrooms! You win {0}!", maxPrize.ToString("C0"));
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
+            GameshowManager.instance.AddMoney(maxPrize);
+            AudioManager.instance.PlayHappySound();
         }
         else
         {
             displayText = String.Format("Sorry, this house has {0} bedrooms and {1} bathrooms.\nBetter luck next time!", currentData.bedrooms, currentData.bathrooms);
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.WrongAnswer));
+            AudioManager.instance.PlaySadSound();
         }
         base.dialogueSystem.PlayDialogue(dialogueList, false, base.gameshowManager.StartNextGame, false);
         for (int i = 0; i < spawnedObjects.Count; i++)
@@ -84,6 +88,6 @@ public class BedBath : BaseGame
             Destroy(spawnedObjects[i]);
         }
         //Popup.instance.StartPopup(displayText);
-        GameshowManager.instance.AddMoney(maxPrize);
+        
     }
 }
