@@ -51,10 +51,10 @@ public class DialogueSystem : MonoBehaviour
         // Test/demo dialogue
         
         List<Dialogue> testDialogue = new List<Dialogue>();
-        testDialogue.Add(new Dialogue("Vorsteg", "Hello there it's pretty cool", vcameras[1], AnimCategory.Idle));
+        testDialogue.Add(new Dialogue("Vorsteg", "Hello there it's pretty cool", vcameras[2], AnimCategory.Idle));
         testDialogue.Add(new Dialogue("Vorsteg", "Still very fun look at me talk", vcameras[1], AnimCategory.CorrectAnswer));
         testDialogue.Add(new Dialogue("Vorsteg", "Wait my name is Bestudo not Vorsteg", vcameras[1], AnimCategory.WrongAnswer));
-        testDialogue.Add(new Dialogue("Bestudo", "That's better!", vcameras[1], AnimCategory.CorrectAnswer));
+        testDialogue.Add(new Dialogue("Bestudo", "That's better!", vcameras[2], AnimCategory.CorrectAnswer));
         testDialogue.Add(new Dialogue("Bestudo", "Who are you?", vcameras[1], AnimCategory.Idle));
         testDialogue.Add(new Dialogue("Bestudo", "Wanna play a game?", vcameras[1], AnimCategory.CorrectAnswer));
         PlayDialogue(testDialogue, true);
@@ -72,12 +72,7 @@ public class DialogueSystem : MonoBehaviour
         dialoguePanel.SetActive(true);
         for(int i = 0; i < dialogues.Count; i++)
         {
-            // Handle cameras
-            foreach (CinemachineVirtualCamera vcam in vcameras)
-            {
-                vcam.Priority = 10;
-            }
-            dialogues[i].camera.Priority = 11;
+            CameraChanger(dialogues[i].camera);
 
             // Handle Animation
             bestudoAnim.SetInteger("RandomChoice", Random.Range(0,(int) dialogues[i].animCategory));
@@ -120,6 +115,19 @@ public class DialogueSystem : MonoBehaviour
             }
         }
         dialoguePanel.SetActive(false);
-        bestudoAnim.SetTrigger("Gesture");
+        if (gestureOnCompletion) {
+            bestudoAnim.SetTrigger("Gesture");
+            CameraChanger(vcameras[0]);
+        }
+    }
+
+    private void CameraChanger(CinemachineVirtualCamera cam)
+    {
+        // Handle cameras
+        foreach (CinemachineVirtualCamera vcam in vcameras)
+        {
+            vcam.Priority = 10;
+        }
+        cam.Priority = 11;
     }
 }
