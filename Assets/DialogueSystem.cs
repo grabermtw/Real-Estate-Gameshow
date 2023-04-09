@@ -41,6 +41,7 @@ public class DialogueSystem : MonoBehaviour
     public CinemachineVirtualCamera wholeStageCam;
     public CinemachineVirtualCamera bestudoCam;
     public CinemachineVirtualCamera gameplayCam;
+    public CinemachineVirtualCamera bedbathCam;
 
     // Start is called before the first frame update
     void Start()
@@ -49,12 +50,12 @@ public class DialogueSystem : MonoBehaviour
     }
 
     // TODO: add voice acting
-    public void PlayDialogue(List<Dialogue> dialogues, bool gestureOnCompletion = false)
+    public void PlayDialogue(List<Dialogue> dialogues, bool gestureOnCompletion, bool endOnBedBathCam = false)
     {
-        StartCoroutine(PlayDialogueConversation(dialogues, gestureOnCompletion));
+        StartCoroutine(PlayDialogueConversation(dialogues, gestureOnCompletion, endOnBedBathCam));
     }
 
-    private IEnumerator PlayDialogueConversation(List<Dialogue> dialogues, bool gestureOnCompletion)
+    private IEnumerator PlayDialogueConversation(List<Dialogue> dialogues, bool gestureOnCompletion, bool endOnBedBathCam)
     {
         dialoguePanel.SetActive(true);
         for(int i = 0; i < dialogues.Count; i++)
@@ -106,6 +107,9 @@ public class DialogueSystem : MonoBehaviour
             bestudoAnim.SetTrigger("Gesture");
             CameraChanger(gameplayCam);
         }
+        if (endOnBedBathCam) {
+            CameraChanger(bedbathCam);
+        }
     }
 
     private void CameraChanger(CinemachineVirtualCamera cam)
@@ -114,6 +118,7 @@ public class DialogueSystem : MonoBehaviour
         wholeStageCam.Priority = 10;
         bestudoCam.Priority = 10;
         gameplayCam.Priority = 10;
+        bedbathCam.Priority = 10;
         
         cam.Priority = 11;
     }
