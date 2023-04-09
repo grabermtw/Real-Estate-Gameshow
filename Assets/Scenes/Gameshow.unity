@@ -308,6 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955050e9ee1e7934194c19134907ecd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bestudoAnim: {fileID: 622487098}
   dialoguePanel: {fileID: 680868093}
   nameField: {fileID: 1308885254}
   messageField: {fileID: 766318341}
@@ -558,6 +559,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &622487098 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1066486997852534543, guid: 93c241e484bbf95449ae1698f81bf583, type: 3}
+  m_PrefabInstance: {fileID: 1099386798}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &680868093
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,6 +988,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1066486997852534543, guid: 93c241e484bbf95449ae1698f81bf583, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3afb6e92b39650b47b26ec562769bd70, type: 2}
     - target: {fileID: 6205316382487275622, guid: 93c241e484bbf95449ae1698f81bf583, type: 3}
       propertyPath: m_Name
       value: Testudo Suit
@@ -1597,8 +1607,8 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
+  m_HorizontalDamping: 4.5
+  m_VerticalDamping: 4.5
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0
