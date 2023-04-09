@@ -9,17 +9,28 @@ public class OneOff : BaseGame
     public GameObject digitPrefab;
     public Transform digitParent;
     private List<OneOffDigit> digitList;
-    private DialogueSystem dialogueSystem;
-    private GameshowManager gameshowManager;
+    string[] oneOffInstructions = new string[] {
+        "This is one of my favorites, called \"One Off!\"",
+        "Every digit in the price will be one integer away from its actual value, either up or down. It's up to you to figure out what direction!",
+        "Press the buttons above and below each digit to create your guess!",
+        "Be careful though, you have to guess the number PERFECTLY to win any money!"
+    };
+
+    AnimCategory[] oneOffAnims = new AnimCategory[] {
+        AnimCategory.CorrectAnswer,
+        AnimCategory.CorrectAnswer,
+        AnimCategory.CorrectAnswer,
+        AnimCategory.WrongAnswer
+    };
     
     private void Start()
     {
-        dialogueSystem = FindObjectsOfType<DialogueSystem>()[0];
-        gameshowManager = FindObjectsOfType<GameshowManager>()[0];
+      
     }
 
     public override void StartGame()
     {
+        base.PlayInstructions(oneOffInstructions, oneOffAnims);
         base.StartGame();
         HouseUI.instance.PopulateData(currentData, true, true, true, true, true, false, false, false);
 
@@ -59,14 +70,14 @@ public class OneOff : BaseGame
         if (valGuess != currentData.price)
         {
             displayText = String.Format("Better luck next time! The actual price was {0}", currentData.price.ToString("C0"));
-            dialogueList.Add(new Dialogue("Bestudo", displayText, dialogueSystem.bestudoCam, AnimCategory.WrongAnswer));
+            dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.WrongAnswer));
         }
         else
         {
             displayText = String.Format("That is correct! You win 10,000!");
-            dialogueList.Add(new Dialogue("Bestudo", displayText, dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
+            dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
         }
-        dialogueSystem.PlayDialogue(dialogueList, false, gameshowManager.StartNextGame, false);
+        base.dialogueSystem.PlayDialogue(dialogueList, false, base.gameshowManager.StartNextGame, false);
         //Popup.instance.StartPopup(displayText);
     }
     
