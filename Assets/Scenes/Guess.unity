@@ -1242,7 +1242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &560952305
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3193,6 +3193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17e7117dfdbdeb47b802d9c976eb995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxPrize: 100000
   guessInput: {fileID: 1908498239}
 --- !u!1 &1231369374
 GameObject:
@@ -3418,6 +3419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f68cba2a5f6f8d14d995308404473a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxPrize: 100000
   bedPrefab: {fileID: 4830374203727073982, guid: fc74682ba66433d438103eeb1824f067, type: 3}
   bathPrefab: {fileID: 3869160788970436057, guid: 97c5f61fd3885ec48a2f02b7021d9bc5, type: 3}
   bedSpawnPoint: {fileID: 1552812339}

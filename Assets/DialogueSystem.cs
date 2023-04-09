@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,12 +51,12 @@ public class DialogueSystem : MonoBehaviour
     }
 
     // TODO: add voice acting
-    public void PlayDialogue(List<Dialogue> dialogues, bool gestureOnCompletion, bool endOnBedBathCam = false)
+    public void PlayDialogue(List<Dialogue> dialogues, bool gestureOnCompletion, Action functionOnCompletion, bool endOnBedBathCam = false)
     {
-        StartCoroutine(PlayDialogueConversation(dialogues, gestureOnCompletion, endOnBedBathCam));
+        StartCoroutine(PlayDialogueConversation(dialogues, gestureOnCompletion, functionOnCompletion, endOnBedBathCam));
     }
 
-    private IEnumerator PlayDialogueConversation(List<Dialogue> dialogues, bool gestureOnCompletion, bool endOnBedBathCam)
+    private IEnumerator PlayDialogueConversation(List<Dialogue> dialogues, bool gestureOnCompletion, Action functionOnCompletion, bool endOnBedBathCam)
     {
         dialoguePanel.SetActive(true);
         for(int i = 0; i < dialogues.Count; i++)
@@ -63,7 +64,7 @@ public class DialogueSystem : MonoBehaviour
             CameraChanger(dialogues[i].camera);
 
             // Handle Animation
-            bestudoAnim.SetInteger("RandomChoice", Random.Range(0,(int) dialogues[i].animCategory));
+            bestudoAnim.SetInteger("RandomChoice", UnityEngine.Random.Range(0,(int) dialogues[i].animCategory));
             switch(dialogues[i].animCategory)
             {
                 case AnimCategory.Idle:
@@ -110,6 +111,7 @@ public class DialogueSystem : MonoBehaviour
         if (endOnBedBathCam) {
             CameraChanger(bedbathCam);
         }
+        functionOnCompletion();
     }
 
     private void CameraChanger(CinemachineVirtualCamera cam)

@@ -4,21 +4,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OneOff : MonoBehaviour
+public class OneOff : BaseGame
 {
     public GameObject digitPrefab;
     public Transform digitParent;
     private List<OneOffDigit> digitList;
-    private HouseData currentData;
     
     private void Start()
     {
-        StartGame();
+        //tartGame();
     }
 
-    public void StartGame()
+    public override void StartGame()
     {
-        currentData = PropertyManager.instance.GetRandomProperty();
+        base.StartGame();
         HouseUI.instance.PopulateData(currentData, true, true, true, true, true, false, false, false);
 
         digitList = new List<OneOffDigit>();

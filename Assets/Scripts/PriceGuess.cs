@@ -4,13 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PriceGuess : MonoBehaviour
+public class PriceGuess : BaseGame
 {
-    public const int maxPrize = 100000;
-
     public TMP_InputField guessInput;    
-
-    private HouseData currentData;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -18,12 +14,12 @@ public class PriceGuess : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        StartGame();
+        //StartGame();
     }
 
-    public void StartGame()
+    public override void StartGame()
     {
-        currentData = PropertyManager.instance.GetRandomProperty();
+        base.StartGame();
         HouseUI.instance.PopulateData(currentData, true, true, true, true, true, false, false, false);
     }
 

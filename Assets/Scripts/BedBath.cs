@@ -3,25 +3,24 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class BedBath : MonoBehaviour
+public class BedBath : BaseGame
 {
     private int bedCount, bathCount;
     public GameObject bedPrefab, bathPrefab;
     public Transform bedSpawnPoint, bathSpawnPoint;
     public TextMeshProUGUI bedBathText;
     private List<GameObject> spawnedObjects;
-    private HouseData currentData;
 
     private void Start()
     {
-        StartGame();
+        //StartGame();
     }
 
-    public void StartGame()
+    public override void StartGame()
     {
+        base.StartGame();
         bedCount = 0;
         bathCount = 0;
-        currentData = PropertyManager.instance.GetRandomProperty();
         HouseUI.instance.PopulateData(currentData, true, true, false, false, true, true, false, false);
 
         spawnedObjects = new List<GameObject>();
