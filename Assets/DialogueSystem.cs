@@ -38,7 +38,7 @@ public class DialogueSystem : MonoBehaviour
     public TextMeshProUGUI nameField;
     public TextMeshProUGUI messageField;
     public TextMeshProUGUI clickMessage;
-    private CinemachineVirtualCamera[] vcameras;
+    public CinemachineVirtualCamera[] vcameras;
 
     void Awake()
     {
@@ -48,17 +48,7 @@ public class DialogueSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Test/demo dialogue
-        
-        List<Dialogue> testDialogue = new List<Dialogue>();
-        testDialogue.Add(new Dialogue("Vorsteg", "Hello there it's pretty cool", vcameras[2], AnimCategory.Idle));
-        testDialogue.Add(new Dialogue("Vorsteg", "Still very fun look at me talk", vcameras[1], AnimCategory.CorrectAnswer));
-        testDialogue.Add(new Dialogue("Vorsteg", "Wait my name is Bestudo not Vorsteg", vcameras[1], AnimCategory.WrongAnswer));
-        testDialogue.Add(new Dialogue("Bestudo", "That's better!", vcameras[2], AnimCategory.CorrectAnswer));
-        testDialogue.Add(new Dialogue("Bestudo", "Who are you?", vcameras[1], AnimCategory.Idle));
-        testDialogue.Add(new Dialogue("Bestudo", "Wanna play a game?", vcameras[1], AnimCategory.CorrectAnswer));
-        PlayDialogue(testDialogue, true);
-        
+
     }
 
     // TODO: add voice acting
