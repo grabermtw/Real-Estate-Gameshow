@@ -44,10 +44,12 @@ public class TaxGuess : BaseGame
         if (prize == 0) {
             displayText = String.Format("The actual tax is {0}.\nYour guess was way off!", currentData.propertyTax.ToString("C0"), prize.ToString("C0"));
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.WrongAnswer));
+            AudioManager.instance.PlaySadSound();
         }
         else {
             displayText = String.Format("The actual tax is {0}.\nYou won {1}!", currentData.propertyTax.ToString("C0"), prize.ToString("C0"));
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
+            AudioManager.instance.PlayHappySound();
         }
         base.dialogueSystem.PlayDialogue(dialogueList, false, base.gameshowManager.StartNextGame, false);
         //Popup.instance.StartPopup(displayText);

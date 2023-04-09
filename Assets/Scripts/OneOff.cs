@@ -71,14 +71,17 @@ public class OneOff : BaseGame
         {
             displayText = String.Format("Better luck next time! The actual price was {0}", currentData.price.ToString("C0"));
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.WrongAnswer));
+            AudioManager.instance.PlaySadSound();
         }
         else
         {
             displayText = String.Format("That is correct! You win {0}!", maxPrize.ToString("C0"));
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
+            GameshowManager.instance.AddMoney(maxPrize);
+            AudioManager.instance.PlayHappySound();
         }
         base.dialogueSystem.PlayDialogue(dialogueList, false, base.gameshowManager.StartNextGame, false);
-        GameshowManager.instance.AddMoney(maxPrize);
+        
         //Popup.instance.StartPopup(displayText);
     }
     

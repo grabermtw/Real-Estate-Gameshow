@@ -59,14 +59,17 @@ public class PriceGuess : BaseGame
         {
             displayText = String.Format("Really? You think they're just giving these things away?");
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.WrongAnswer));
+            AudioManager.instance.PlaySadSound();
         }
         else if (prize == 0) {
             displayText = String.Format("The actual listing is valued at {0}.\nYour guess was too far off!", currentData.price.ToString("C0"));
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.WrongAnswer));
+            AudioManager.instance.PlaySadSound();
         }
         else {
             displayText = String.Format("The actual listing is valued at {0}.\nYou won {1}!", currentData.price.ToString("C0"), prize.ToString("C0"));
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
+            AudioManager.instance.PlayHappySound();
         }
         base.dialogueSystem.PlayDialogue(dialogueList, false, base.gameshowManager.StartNextGame, false);
         //Popup.instance.StartPopup(displayText);
