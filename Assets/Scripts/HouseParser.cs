@@ -24,7 +24,9 @@ public class HouseParser : MonoBehaviour
         List<HouseData> exportList = new List<HouseData>();
         try
         {
-            using (StreamReader sr = new StreamReader(Path.Combine(Application.dataPath, pathToCSV)))
+            Debug.Log(Application.persistentDataPath);
+            string fullCSVPath = Path.Combine(Application.streamingAssetsPath, pathToCSV);
+            using (StreamReader sr = new StreamReader(fullCSVPath))
             {
                 // skip header line
                 string line = sr.ReadLine();
@@ -45,11 +47,23 @@ public class HouseParser : MonoBehaviour
                         string address = toks[8];
                         int yearBuilt = Int32.Parse(toks[9]);
                         //Debug.Log(Path.Combine(pathToImages, toks[10].Replace(".png", "")));
-                        Texture2D image = Resources.Load<Texture2D>(Path.Combine(pathToImages, toks[10].Replace(".png", "")));
+                        string pathToImage = Path.Combine(Application.streamingAssetsPath, "Images", toks[10]);
+                        byte[] pngBytes = System.IO.File.ReadAllBytes(pathToImage);
+                        Texture2D image = new Texture2D(2, 2);
+                        Debug.Log(pathToImage);
+                        if (!image.LoadImage(pngBytes))
+                        {
+                            Debug.Log("Failed to load bytes");
+                        }
+                        else
+                        {
+                            Debug.Log("LOADED IT!!!");
+                        }
                         if (image == null)
                         {
                             Debug.Log("Failed to load image " + Path.Combine(pathToImages, toks[10].Replace(".png", "")));
                         }
+                        
                         HouseData newData = new HouseData(price, bedrooms, bathrooms, squareFeet, propertyTax,
                                                           taxAssessment, city, state, address, yearBuilt, image);
                         exportList.Add(newData);
