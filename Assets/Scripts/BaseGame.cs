@@ -19,7 +19,7 @@ public class BaseGame : MonoBehaviour
     public virtual void StartGame()
     {
         screensaver.SetActive(false);
-        currentData = PropertyManager.instance.GetRandomProperty();
+        currentData = PropertyManager.instance.GetRandomProperty(false);
     }
 
     public virtual void EndGame()

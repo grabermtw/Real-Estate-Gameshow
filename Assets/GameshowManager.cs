@@ -89,7 +89,7 @@ public class GameshowManager : MonoBehaviour
     public void AddMoney(int amount)
     {
         totalMoney += amount;
-        moneyText.text = string.Format("Money: {0}", amount.ToString("C0"));
+        moneyText.text = string.Format("Money: {0}", totalMoney.ToString("C0"));
     }
 
     private void EndingDialogue()

@@ -28,9 +28,13 @@ public class PropertyManager : MonoBehaviour
         properties = parser.ParseCSV();
     }
 
-    public HouseData GetRandomProperty()
+    public HouseData GetRandomProperty(bool needsTax)
     {
         int idx = Random.Range(0, properties.Count);
+        while (properties[idx].propertyTax < 0)
+        {
+           idx = Random.Range(0, properties.Count); 
+        }
         return properties[idx];
     }
 }

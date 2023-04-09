@@ -26,7 +26,8 @@ public class TaxGuess : BaseGame
     public override void StartGame()
     {
         base.PlayInstructions(taxGuessInstructions, taxGuessAnims);
-        base.StartGame();
+        screensaver.SetActive(false);
+        currentData = PropertyManager.instance.GetRandomProperty(true);
         HouseUI.instance.PopulateData(currentData, true, true, false, true, false, true, false, false);
     }
 
