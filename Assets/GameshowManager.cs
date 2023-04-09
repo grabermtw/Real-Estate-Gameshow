@@ -54,7 +54,9 @@ public class GameshowManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Escape)) {
+            MenuButton();
+        }
     }
 
     private void Opening()
