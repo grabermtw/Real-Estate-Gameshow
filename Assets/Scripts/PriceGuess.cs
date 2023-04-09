@@ -8,10 +8,7 @@ public class PriceGuess : MonoBehaviour
 {
     public const int maxPrize = 100000;
 
-    public TMP_InputField guessInput;
-
-    public GameObject popup;
-    public TextMeshProUGUI popupWinText, popupAnyKeyText;
+    public TMP_InputField guessInput;    
 
     private HouseData currentData;
 
@@ -26,7 +23,6 @@ public class PriceGuess : MonoBehaviour
 
     public void StartGame()
     {
-        popup.SetActive(false);
         currentData = PropertyManager.instance.GetRandomProperty();
         HouseUI.instance.PopulateData(currentData, true, true, true, true, true, false, false, false);
     }
@@ -54,18 +50,8 @@ public class PriceGuess : MonoBehaviour
         {
             prize = 0;
         }
-        popupWinText.text = String.Format("The actual listing is valued at {0}.\nYou won {1}!", currentData.price.ToString("C0"), prize.ToString("C0"));
-        StartCoroutine(PopupCoroutine());
+        Popup.instance.StartPopup(String.Format("The actual listing is valued at {0}.\nYou won {1}!", currentData.price.ToString("C0"), prize.ToString("C0")));
     }
 
-    public IEnumerator PopupCoroutine()
-    {
-        popup.SetActive(true);
-        popupAnyKeyText.gameObject.SetActive(false);
-        yield return new WaitForSeconds(2f);
-        popupAnyKeyText.gameObject.SetActive(true);
-        yield return new WaitUntil( () => Input.anyKey );
-        popup.SetActive(false);
-        //PopulateData(PropertyManager.instance.GetRandomProperty());
-    }
+    
 }
