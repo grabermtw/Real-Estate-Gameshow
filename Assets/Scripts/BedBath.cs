@@ -10,10 +10,14 @@ public class BedBath : BaseGame
     public Transform bedSpawnPoint, bathSpawnPoint;
     public TextMeshProUGUI bedBathText;
     private List<GameObject> spawnedObjects;
+    private DialogueSystem dialogueSystem;
+    private GameshowManager gameshowManager;
 
     private void Start()
     {
         //StartGame();
+        dialogueSystem = FindObjectsOfType<DialogueSystem>()[0];
+        gameshowManager = FindObjectsOfType<GameshowManager>()[0];
     }
 
     public override void StartGame()
@@ -46,15 +50,19 @@ public class BedBath : BaseGame
 
     public void SubmitGuess()
     {
+        List<Dialogue> dialogueList = new List<Dialogue>();
         string displayText;
         if (bedCount == currentData.bedrooms && bathCount == currentData.bathrooms)
         {
             displayText = String.Format("Correct number of bedrooms and bathrooms! You win 10,000!");
+            dialogueList.Add(new Dialogue("Bestudo", displayText, dialogueSystem.bestudoCam, AnimCategory.WrongAnswer));
         }
         else
         {
             displayText = String.Format("Sorry, this house has {0} bedrooms and {1} bathrooms.\nBetter luck next time!", currentData.bedrooms, currentData.bathrooms);
+            dialogueList.Add(new Dialogue("Bestudo", displayText, dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
         }
-        Popup.instance.StartPopup(displayText);
+        dialogueSystem.PlayDialogue(dialogueList, false, gameshowManager.StartNextGame, false);
+        //Popup.instance.StartPopup(displayText);
     }
 }

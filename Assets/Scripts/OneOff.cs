@@ -9,10 +9,13 @@ public class OneOff : BaseGame
     public GameObject digitPrefab;
     public Transform digitParent;
     private List<OneOffDigit> digitList;
+    private DialogueSystem dialogueSystem;
+    private GameshowManager gameshowManager;
     
     private void Start()
     {
-        //tartGame();
+        dialogueSystem = FindObjectsOfType<DialogueSystem>()[0];
+        gameshowManager = FindObjectsOfType<GameshowManager>()[0];
     }
 
     public override void StartGame()
@@ -51,16 +54,20 @@ public class OneOff : BaseGame
             finalGuess += digit.currentValue;
         }
         int valGuess = Int32.Parse(finalGuess);
+        List<Dialogue> dialogueList = new List<Dialogue>();
         string displayText;
         if (valGuess != currentData.price)
         {
             displayText = String.Format("Better luck next time! The actual price was {0}", currentData.price.ToString("C0"));
+            dialogueList.Add(new Dialogue("Bestudo", displayText, dialogueSystem.bestudoCam, AnimCategory.WrongAnswer));
         }
         else
         {
             displayText = String.Format("That is correct! You win 10,000!");
+            dialogueList.Add(new Dialogue("Bestudo", displayText, dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
         }
-        Popup.instance.StartPopup(displayText);
+        dialogueSystem.PlayDialogue(dialogueList, false, gameshowManager.StartNextGame, false);
+        //Popup.instance.StartPopup(displayText);
     }
     
 }

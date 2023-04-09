@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PriceGuess : BaseGame
 {
-    public TMP_InputField guessInput;    
+    public TMP_InputField guessInput;
+    private DialogueSystem dialogueSystem;
+    private GameshowManager gameshowManager;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -15,6 +18,8 @@ public class PriceGuess : BaseGame
     private void Start()
     {
         //StartGame();
+        dialogueSystem = FindObjectsOfType<DialogueSystem>()[0];
+        gameshowManager = FindObjectsOfType<GameshowManager>()[0];
     }
 
     public override void StartGame()
@@ -46,7 +51,16 @@ public class PriceGuess : BaseGame
         {
             prize = 0;
         }
-        Popup.instance.StartPopup(String.Format("The actual listing is valued at {0}.\nYou won {1}!", currentData.price.ToString("C0"), prize.ToString("C0")));
+        List<Dialogue> dialogueList = new List<Dialogue>();
+        string displayText = String.Format("The actual listing is valued at {0}.\nYou won {1}!", currentData.price.ToString("C0"), prize.ToString("C0"));
+        if (prize == 0) {
+            dialogueList.Add(new Dialogue("Bestudo", displayText, dialogueSystem.bestudoCam, AnimCategory.WrongAnswer));
+        }
+        else {
+            dialogueList.Add(new Dialogue("Bestudo", displayText, dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
+        }
+        dialogueSystem.PlayDialogue(dialogueList, false, gameshowManager.StartNextGame, false);
+        //Popup.instance.StartPopup(displayText);
     }
 
     
