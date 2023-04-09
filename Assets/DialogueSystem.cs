@@ -57,17 +57,17 @@ public class DialogueSystem : MonoBehaviour
         testDialogue.Add(new Dialogue("Bestudo", "That's better!", vcameras[1], AnimCategory.CorrectAnswer));
         testDialogue.Add(new Dialogue("Bestudo", "Who are you?", vcameras[1], AnimCategory.Idle));
         testDialogue.Add(new Dialogue("Bestudo", "Wanna play a game?", vcameras[1], AnimCategory.CorrectAnswer));
-        PlayDialogue(testDialogue);
+        PlayDialogue(testDialogue, true);
         
     }
 
-    // TODO: add voice acting support and animation support
-    public void PlayDialogue(List<Dialogue> dialogues)
+    // TODO: add voice acting
+    public void PlayDialogue(List<Dialogue> dialogues, bool gestureOnCompletion = false)
     {
-        StartCoroutine(PlayDialogueConversation(dialogues));
+        StartCoroutine(PlayDialogueConversation(dialogues, gestureOnCompletion));
     }
 
-    private IEnumerator PlayDialogueConversation(List<Dialogue> dialogues)
+    private IEnumerator PlayDialogueConversation(List<Dialogue> dialogues, bool gestureOnCompletion)
     {
         dialoguePanel.SetActive(true);
         for(int i = 0; i < dialogues.Count; i++)
@@ -120,5 +120,6 @@ public class DialogueSystem : MonoBehaviour
             }
         }
         dialoguePanel.SetActive(false);
+        bestudoAnim.SetTrigger("Gesture");
     }
 }
