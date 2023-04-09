@@ -9329,7 +9329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd3abfaffc646645adb91bf2942ad6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathToCSV: data.csv
+  pathToCSV: dataCSV.csv
   pathToImages: Images
 --- !u!114 &1991689247
 MonoBehaviour:
