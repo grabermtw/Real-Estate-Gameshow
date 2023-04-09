@@ -55,7 +55,7 @@ public class YearGuess : BaseGame
         int correctDecade = (currentData.yearBuilt / 10) * 10;
         if (decade == correctDecade)
         {
-            displayText = String.Format("Correct! You win {0}", maxPrize);
+            displayText = String.Format("Correct! You win {0}", maxPrize.ToString("C0"));
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
         }
         else
@@ -65,5 +65,6 @@ public class YearGuess : BaseGame
         }
         base.dialogueSystem.PlayDialogue(dialogueList, false, base.gameshowManager.StartNextGame, false);
         //Popup.instance.StartPopup(displayText);
+        GameshowManager.instance.AddMoney(maxPrize);
     }
 }

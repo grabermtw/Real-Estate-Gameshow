@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -40,9 +41,9 @@ public class HouseUI : MonoBehaviour
         bedBathText.text = string.Format("{0} bed, {1} bath", data.bedrooms, data.bathrooms);
         sqFeetText.text = string.Format("{0} sq feet", data.squareFeet);
         yearText.text = string.Format("Built in {0}", data.yearBuilt);
-        priceText.text = string.Format("Listed at {0}", data.price);
-        propertyTaxText.text = string.Format("Property tax {0}", data.propertyTax);
-        taxAssessmentText.text = string.Format("Tax assessment {0}", data.yearBuilt);
+        priceText.text = string.Format("Listed at {0}", data.price.ToString("C0"));
+        propertyTaxText.text = string.Format("Property tax {0}", data.propertyTax.ToString("C0"));
+        taxAssessmentText.text = string.Format("Tax assessment {0}", data.taxAssessment.ToString("C0"));
 
         addressText.gameObject.SetActive(useAddress);
         cityStateText.gameObject.SetActive(useCityState);

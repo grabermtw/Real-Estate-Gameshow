@@ -74,10 +74,11 @@ public class OneOff : BaseGame
         }
         else
         {
-            displayText = String.Format("That is correct! You win 10,000!");
+            displayText = String.Format("That is correct! You win {0}!", maxPrize.ToString("C0"));
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
         }
         base.dialogueSystem.PlayDialogue(dialogueList, false, base.gameshowManager.StartNextGame, false);
+        GameshowManager.instance.AddMoney(maxPrize);
         //Popup.instance.StartPopup(displayText);
     }
     

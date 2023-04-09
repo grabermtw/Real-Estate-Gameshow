@@ -34,22 +34,24 @@ public class TaxGuess : BaseGame
     {
         int value = Int32.Parse(guessInput.text);
         int difference = Math.Abs(currentData.propertyTax - value);
-        Debug.Log("Diff "+difference);
         int prize = (int)((float)maxPrize - ((float)maxPrize * ((float)difference / 1000f)));
         if (prize < 0)
         {
             prize = 0;
         }
         List<Dialogue> dialogueList = new List<Dialogue>();
-        string displayText = String.Format("The actual tax is {0}.\nYou won {1}!", currentData.propertyTax.ToString("C0"), prize.ToString("C0"));
+        string displayText;
         if (prize == 0) {
+            displayText = String.Format("The actual tax is {0}.\nYour guess was way off!", currentData.propertyTax.ToString("C0"), prize.ToString("C0"));
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.WrongAnswer));
         }
         else {
+            displayText = String.Format("The actual tax is {0}.\nYou won {1}!", currentData.propertyTax.ToString("C0"), prize.ToString("C0"));
             dialogueList.Add(new Dialogue("Bestudo", displayText, base.dialogueSystem.bestudoCam, AnimCategory.CorrectAnswer));
         }
         base.dialogueSystem.PlayDialogue(dialogueList, false, base.gameshowManager.StartNextGame, false);
         //Popup.instance.StartPopup(displayText);
+        GameshowManager.instance.AddMoney(prize);
     }
 
     

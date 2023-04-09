@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class GameshowManager : MonoBehaviour
@@ -9,6 +10,9 @@ public class GameshowManager : MonoBehaviour
     public List<BaseGame> games;
     private BaseGame currGame;
     private Queue<BaseGame> gameQueue;
+
+    public int totalMoney;
+    public TextMeshProUGUI moneyText;
 
     public static GameshowManager instance;
 
@@ -38,6 +42,7 @@ public class GameshowManager : MonoBehaviour
         {
             gameQueue.Enqueue(bg);
         }
+        AddMoney(0);
     }
 
     // Update is called once per frame
@@ -66,5 +71,11 @@ public class GameshowManager : MonoBehaviour
         currGame = gameQueue.Dequeue();
         currGame.gameObject.SetActive(true);
         currGame.StartGame();
+    }
+
+    public void AddMoney(int amount)
+    {
+        totalMoney += amount;
+        moneyText.text = string.Format("Money: {0}", amount.ToString("C0"));
     }
 }
